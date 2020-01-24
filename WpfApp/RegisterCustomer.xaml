@@ -1,0 +1,36 @@
+﻿<Window x:Class="WpfApp.RegisterCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Background="#FFF1F1F1">
+        <TextBox x:Name="txtFirstName" HorizontalAlignment="Left" Height="23" Margin="102,60,0,0" TextWrapping="Wrap" Text="Mohammad" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtLastName" HorizontalAlignment="Left" Height="23" Margin="351,61,0,0" TextWrapping="Wrap" Text="Azad" VerticalAlignment="Top" Width="156"/>
+
+        <TextBox x:Name="txtHomeAddress_Province" HorizontalAlignment="Left" Height="23" Margin="102,143,0,0" TextWrapping="Wrap" Text="tehran" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtHomeAddress_City" HorizontalAlignment="Left" Height="23" Margin="351,143,0,0" TextWrapping="Wrap" Text="tehan" VerticalAlignment="Top" Width="137"/>
+        <TextBox x:Name="txtHomeAddress_PostalCode" HorizontalAlignment="Left" Height="23" Margin="568,143,0,0" TextWrapping="Wrap" Text="9638527412" VerticalAlignment="Top" Width="168"/>
+        <TextBox x:Name="txtWorkAddress_Province" HorizontalAlignment="Left" Height="23" Margin="102,268,0,0" TextWrapping="Wrap" Text="Gilan" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtWorkAddress_City" HorizontalAlignment="Left" Height="23" Margin="351,268,0,0" TextWrapping="Wrap" Text="Rasht" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtWorkAddress_PostalCode" HorizontalAlignment="Left" Height="23" Margin="568,268,0,0" TextWrapping="Wrap" Text="9876543210" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label" Content="FisrtName :" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy" Content="LastName :" HorizontalAlignment="Left" Margin="264,57,0,0" VerticalAlignment="Top" Width="82"/>
+        <Label x:Name="label_Copy1" Content="HomeAddress :" HorizontalAlignment="Left" Margin="28,104,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="label_Copy2" Content="Province :" HorizontalAlignment="Left" Margin="27,143,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy3" Content="City :" HorizontalAlignment="Left" Margin="276,143,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy4" Content="PostalCode :" HorizontalAlignment="Left" Margin="493,143,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy5" Content="Province :" HorizontalAlignment="Left" Margin="27,264,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy6" Content="City :" HorizontalAlignment="Left" Margin="276,268,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy7" Content="PostalCode :" HorizontalAlignment="Left" Margin="488,264,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy8" Content="WorkAddress :" HorizontalAlignment="Left" Margin="38,237,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="button"  Content="Register" HorizontalAlignment="Left" Margin="102,358,0,0" VerticalAlignment="Top" Width="149" Height="41" Click="button_Click" Background="#FFC6F59F"/>
+        <Label x:Name="label_Copy9" Content="NationalCode :" HorizontalAlignment="Left" Margin="530,61,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="3.439,0.538"/>
+        <TextBox x:Name="txtNationalCode" HorizontalAlignment="Left" Height="23" Margin="626,64,0,0" TextWrapping="Wrap" Text="0084002637" VerticalAlignment="Top" Width="156"/>
+        <Label x:Name="label_Copy10" Content="Register Customer" HorizontalAlignment="Left" Margin="306,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Width="127" FontFamily="Segoe UI Emoji" Background="#FF86FF6B"/>
+        <Button x:Name="btnCreateAccount"  Content="CreateAccount" Visibility="Visible" HorizontalAlignment="Left" Margin="400,358,0,0" VerticalAlignment="Top" Width="149" Height="41" Background="#FFFF9191" Click="btnCreateAccount_Click" />
+
+    </Grid>
+</Window>
