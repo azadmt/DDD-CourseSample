@@ -1,5 +1,4 @@
 ﻿using AccountManagement.Domain.Account;
-using CustomerManagement.Customer;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 using System;
