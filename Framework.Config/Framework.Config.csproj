@@ -95,10 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CastleCommandHandlerFactory.cs" />
+    <Compile Include="CommndHandlerLogHook.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="DependencyConfigurator.cs" />
     <Compile Include="LoggingInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityInterceptor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -116,6 +118,10 @@
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{db8f891c-e3c8-4da8-a04d-c6828042260f}</Project>
       <Name>Framework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Security\Framework.Security.csproj">
+      <Project>{ff94a058-ffd7-4f65-af64-b26103eec2b4}</Project>
+      <Name>Framework.Security</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,9 @@
-﻿using CustomerManagement.Application.Contract;
+﻿using Common;
+using CustomerManagement.Application.Contract;
 using CustomerManagement.Customer;
 using Framework.Application;
 using Framework.Core;
+using Framework.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +22,7 @@ namespace CustomerManagement.Application
             this.bus = bus;
         }
 
+        [Authorize(Operations.RegisterCustomer)]
         public void Handle(RegisterCustomerCommand command)
         {
             var homeAddress = new Address(command.HomeAddress_PostalCode, command.HomeAddress_City, command.HomeAddress_Province);

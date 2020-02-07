@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Framework.Application
 {
+    public class  MyAttribiute:Attribute
+    {
+
+    }
     public interface ICommandHandler
     {
 
@@ -15,6 +19,7 @@ namespace Framework.Application
     public interface ICommandHandler<T> : ICommandHandler where T : ICommand
     {
         IUnitOfWork Uow { get; }
+        [MyAttribiute]
         void Handle(T command);
     }
 

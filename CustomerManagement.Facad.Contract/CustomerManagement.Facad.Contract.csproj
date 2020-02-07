@@ -42,8 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="ICustomerFacadService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{25660DBE-015E-4260-8AFF-E76DDBC6C587}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomerManagement.Application.Contract\CustomerManagement.Application.Contract.csproj">
+      <Project>{612C3D27-6E93-4D1D-AF55-7694FD6DAF44}</Project>
+      <Name>CustomerManagement.Application.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
+      <Project>{DB8F891C-E3C8-4DA8-A04D-C6828042260F}</Project>
+      <Name>Framework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Security\Framework.Security.csproj">
+      <Project>{FF94A058-FFD7-4F65-AF64-B26103EEC2B4}</Project>
+      <Name>Framework.Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

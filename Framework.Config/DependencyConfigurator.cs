@@ -20,16 +20,18 @@ namespace Framework.Config
     {
         public static void Config(IWindsorContainer windsorContainer)
         {
-            //ConventionRegistry.Register(
-            //    nameof(ImmutablePocoConvention),
-            //    new ConventionPack { new ImmutablePocoConvention() },
-            //    _ => true);
-            
+            windsorContainer.Register(Component.For<SecurityInterceptor>());
             windsorContainer.Register(Component.For<LoggingInterceptor>());
+            windsorContainer.Register(Component.For<IRequestContext>().ImplementedBy<RequestContext>().LifestylePerWebRequest());// Install-Package Castle.Facilities.AspNet.SystemWeb
             windsorContainer.Register(Component.For<IEventBus>().ImplementedBy<EventAggregator>().LifestylePerWebRequest());// Install-Package Castle.Facilities.AspNet.SystemWeb
             windsorContainer.Register(Component.For<ILogger>().ImplementedBy<Logger>().LifestyleSingleton());// Install-Package Castle.Facilities.AspNet.SystemWeb
             windsorContainer.Register(Component.For<ISerializer>().ImplementedBy<JsonSerializer>().LifestyleSingleton());// Install-Package Castle.Facilities.AspNet.SystemWeb
             windsorContainer.Register(Component.For<ICommandBus>().ImplementedBy<CommandBus>().LifestylePerWebRequest());// Install-Package Castle.Facilities.AspNet.SystemWeb
+            windsorContainer.Register(Component.For<IContainer>().ImplementedBy<Container>().UsingFactoryMethod<Container>(p =>
+            {
+                return new Container(windsorContainer);
+            }));
+
             windsorContainer.Register(Component.For<ICommandHandlerFactory>().ImplementedBy<CastleCommandHandlerFactory>()
                 .UsingFactoryMethod<CastleCommandHandlerFactory>(p =>
                   {

@@ -9,9 +9,9 @@ namespace Framework.Config
 {
     public class Container : IContainer
     {
-        private readonly WindsorContainer windsorContainer;
+        private readonly IWindsorContainer windsorContainer;
 
-        public Container(WindsorContainer windsorContainer)
+        public Container(IWindsorContainer windsorContainer)
         {
             this.windsorContainer = windsorContainer;
         }

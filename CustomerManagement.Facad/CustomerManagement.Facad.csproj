@@ -10,11 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CustomerManagement.Facad</RootNamespace>
     <AssemblyName>CustomerManagement.Facad</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,11 +49,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="CustomerFacadService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerManagement.Application.Contract\CustomerManagement.Application.Contract.csproj">
+      <Project>{612c3d27-6e93-4d1d-af55-7694fd6daf44}</Project>
+      <Name>CustomerManagement.Application.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomerManagement.Domain.Contract\CustomerManagement.Domain.Contract.csproj">
+      <Project>{2090803d-558b-429a-80d4-dc7541cb8b08}</Project>
+      <Name>CustomerManagement.Domain.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomerManagement.Facad.Contract\CustomerManagement.Facad.Contract.csproj">
+      <Project>{ae8ca0ec-b0dd-46a3-8107-7c5dbfa52c53}</Project>
+      <Name>CustomerManagement.Facad.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Application\Framework.Application.csproj">
+      <Project>{7669d573-ebee-40c0-bbf3-6b743b67e9c3}</Project>
+      <Name>Framework.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
+      <Project>{db8f891c-e3c8-4da8-a04d-c6828042260f}</Project>
+      <Name>Framework.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

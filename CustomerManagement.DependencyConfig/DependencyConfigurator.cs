@@ -4,21 +4,15 @@ using CustomerManagement.Application;
 using CustomerManagement.Application.Contract;
 using CustomerManagement.Controller.Controllers;
 using CustomerManagement.Customer;
+using CustomerManagement.Facad;
+using CustomerManagement.Facad.Contract;
 using CustomerManagement.Persistence;
 using CustomerManagement.Persistence.Mappings;
 using Framework.Application;
 using Framework.Config;
 using Framework.Core;
-using Framework.Persistence.MongoDB;
 using Framework.Persistence.NH;
 using NHibernate;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace CustomerManagement.DependencyConfig
@@ -36,7 +30,7 @@ namespace CustomerManagement.DependencyConfig
             RegisterCommandHandlers(windsorContainer);
             RegisterRepositories(windsorContainer);
             RegisterControllers(windsorContainer);
-            // RegisterMongoDependencies(windsorContainer);
+            RegisterFacadSerices(windsorContainer);
             RegisterNHDependencies(windsorContainer);
         }
 
@@ -45,10 +39,29 @@ namespace CustomerManagement.DependencyConfig
         {
             windsorContainer.Register(Component.For<ICommandHandler<RegisterCustomerCommand>>()
                 .ImplementedBy<CustomerCommandHandlers>() 
-                .Interceptors<LoggingInterceptor>().Proxy.Hook(new CommndHandlerLogHook())
+                //.Interceptors<SecurityInterceptor>()
+               // .Interceptors<LoggingInterceptor>()
+               // .Proxy.Hook(new CommndHandlerLogHook())
                 
                 .DependsOn(Dependency.OnComponent(typeof(IUnitOfWork),UnitOfWorkName))               
                 .LifestylePerWebRequest());
+
+        }
+
+        private static void RegisterFacadSerices(IWindsorContainer windsorContainer)
+        {
+            //windsorContainer.Register(
+            //    Classes.FromAssemblyContaining<CustomerFacadService>()
+            //    .BasedOn<IFacadeService>()
+            //    .WithService.FromInterface()
+            // //   .LifestyleBoundTo<ApiController>()// use a general interface IAppApi
+            //    .Configure(a => a.Interceptors<SecurityInterceptor>()));
+
+            windsorContainer.Register(
+               Component.For<ICustomerFacadService>()
+               .ImplementedBy<CustomerFacadService>()
+               .Interceptors<LoggingInterceptor,SecurityInterceptor>()
+               .LifestyleBoundTo<ApiController>());
 
         }
 

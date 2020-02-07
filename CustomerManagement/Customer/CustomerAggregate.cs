@@ -22,8 +22,9 @@ namespace CustomerManagement.Customer
         public virtual Address WorkAddress { get; protected set; }
         public virtual IEventBus EventBus { get; protected set; }
 
-        public CustomerAggregate(string firstName, string lastName, string nationalCode, Address homeAddress, Address workAddress, IEventBus EventBus)
+        public CustomerAggregate(string firstName, string lastName, string nationalCode, Address homeAddress, Address workAddress, IEventBus eventBus)
         {
+            EventBus = eventBus;
             this.firstName = firstName;
             this.lastName = lastName;
             HomeAddress = homeAddress;
@@ -35,6 +36,12 @@ namespace CustomerManagement.Customer
         protected CustomerAggregate()
         {
 
+        }
+
+        public virtual void ChangeNationalCode(NationalCode newNationalCode)
+        {
+            NationalCode = newNationalCode;
+            EventBus.Publish(new CustomerNationalCodeChanged(Id, NationalCode.Code));
         }
     }
 }

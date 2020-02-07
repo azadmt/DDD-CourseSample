@@ -97,6 +97,14 @@
       <Project>{4ff5e91e-cdda-462d-b5eb-a2c7fbf89a77}</Project>
       <Name>CustomerManagement.Controller</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CustomerManagement.Facad.Contract\CustomerManagement.Facad.Contract.csproj">
+      <Project>{AE8CA0EC-B0DD-46A3-8107-7C5DBFA52C53}</Project>
+      <Name>CustomerManagement.Facad.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomerManagement.Facad\CustomerManagement.Facad.csproj">
+      <Project>{EF60A7F3-1535-406E-9E7F-87BEA7414EEF}</Project>
+      <Name>CustomerManagement.Facad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CustomerManagement.Persistence.Mongo\CustomerManagement.Persistence.Mongo.csproj">
       <Project>{6711D000-A950-49E2-89EE-3E22A22C5CBE}</Project>
       <Name>CustomerManagement.Persistence.Mongo</Name>

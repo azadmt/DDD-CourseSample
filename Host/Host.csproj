@@ -60,6 +60,9 @@
     <Reference Include="PostSharp, Version=6.4.5.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <HintPath>..\packages\PostSharp.Redist.6.4.5\lib\net45\PostSharp.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp, Version=106.0.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.10.1\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -280,6 +283,14 @@
     <ProjectReference Include="..\Framework.Config\Framework.Config.csproj">
       <Project>{2919c5d0-7a90-4462-87b3-7dc5f0290f08}</Project>
       <Name>Framework.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
+      <Project>{DB8F891C-E3C8-4DA8-A04D-C6828042260F}</Project>
+      <Name>Framework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Security\Framework.Security.csproj">
+      <Project>{FF94A058-FFD7-4F65-AF64-B26103EEC2B4}</Project>
+      <Name>Framework.Security</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

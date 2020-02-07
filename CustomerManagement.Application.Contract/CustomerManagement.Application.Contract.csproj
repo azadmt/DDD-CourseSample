@@ -47,9 +47,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{25660dbe-015e-4260-8aff-e76ddbc6c587}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Application\Framework.Application.csproj">
       <Project>{7669d573-ebee-40c0-bbf3-6b743b67e9c3}</Project>
       <Name>Framework.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Security\Framework.Security.csproj">
+      <Project>{ff94a058-ffd7-4f65-af64-b26103eec2b4}</Project>
+      <Name>Framework.Security</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

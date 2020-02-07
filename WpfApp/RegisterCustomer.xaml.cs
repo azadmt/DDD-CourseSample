@@ -24,13 +24,21 @@ namespace WpfApp
     /// </summary>
     public partial class RegisterCustomer : Window
     {
+        private bool isLoggin;
         public RegisterCustomer()
         {
             InitializeComponent();
         }
 
+        string securityToken;
+
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            if (!isLoggin)
+            {
+                MessageBox.Show("Please  Login To System !!!");
+                return;
+            }
             var registerCustomer = new RegisterCustomerCommand();
             registerCustomer.FirstName = txtFirstName.Text;
             registerCustomer.LastName = txtLastName.Text;
@@ -56,10 +64,39 @@ namespace WpfApp
             var request = new RestSharp.RestRequest(resource, RestSharp.Method.POST)
             { RequestFormat = RestSharp.DataFormat.Json }
                 .AddJsonBody(data);
+            request.AddHeader("Token", securityToken.Replace("\"", string.Empty));
             try
             {
                 var response = client.Execute(request);
-                MessageBox.Show("Success !!!");
+                if (response.IsSuccessful)
+                {
+                    MessageBox.Show("Success !!!");
+                }
+                else
+                {
+                    MessageBox.Show(response.Content);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                throw ex;
+            }
+        }
+
+        private void Login()
+        {
+            var client = new RestClient("http://localhost:51551/api");
+            var request = new RestSharp.RestRequest("/Security/", RestSharp.Method.POST)
+            { RequestFormat = RestSharp.DataFormat.Json }
+                .AddJsonBody(new { UserName = "admin", Password = "123" });
+            try
+            {
+                var response = client.Execute(request);
+                securityToken = response.Content;
+                isLoggin = true;
+                MessageBox.Show("Login Successfull....");
+                btnLogin.IsEnabled = false;
             }
             catch (Exception ex)
             {
@@ -70,8 +107,19 @@ namespace WpfApp
 
         private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
         {
+            if (!isLoggin)
+            {
+                MessageBox.Show("Please  Login To System !!!");
+                return;
+            }
             var command = new CreateAccountCommand() { CustomerNationalCode = txtNationalCode.Text };
             CallRestApi(command, "/Account/");
+
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Login();
 
         }
     }

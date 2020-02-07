@@ -2,7 +2,7 @@
 using Framework.Application;
 using Framework.Core;
 using System;
-using System.Reflection;
+using System.Linq;
 
 namespace Framework.Config
 {
@@ -25,24 +25,6 @@ namespace Framework.Config
           
             _logger.Log(logData);
 
-        }
-    }
-
-    public class CommndHandlerLogHook : IProxyGenerationHook
-    {
-        public void MethodsInspected()
-        {
-           // throw new NotImplementedException();
-        }
-
-        public void NonProxyableMemberNotification(Type type, MemberInfo memberInfo)
-        {
-          //  throw new NotImplementedException();
-        }
-
-        public bool ShouldInterceptMethod(Type type, MethodInfo methodInfo)
-        {
-            return type == typeof(ICommandHandler) && methodInfo.Name == "Handle";
         }
     }
 }

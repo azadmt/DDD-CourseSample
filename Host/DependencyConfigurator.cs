@@ -1,4 +1,5 @@
 ﻿using Castle.Windsor;
+using Framework.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Host
             Framework.Config.DependencyConfigurator.Config(container);
             AccountManagement.Config.DependencyConfigurator.Config(container);
             CustomerManagement.DependencyConfig.DependencyConfigurator.Config(container);
-           
+            ServiceLocator.Initial(container.Resolve<IContainer>());
         }
     }
-}
+} 
