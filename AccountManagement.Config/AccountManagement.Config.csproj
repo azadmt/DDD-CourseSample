@@ -107,6 +107,14 @@
       <Project>{8061739B-D288-411A-8EEA-587EC6F49DBE}</Project>
       <Name>AccountManagement.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AccountManagement.Facade.Contract\AccountManagement.Facade.Contract.csproj">
+      <Project>{73ABAA79-6E84-457E-B7F2-A47EA8DBC254}</Project>
+      <Name>AccountManagement.Facade.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AccountManagement.Facade\AccountManagement.Facade.csproj">
+      <Project>{A1C5A2DD-E3BA-4EF2-9563-3D20AC00E180}</Project>
+      <Name>AccountManagement.Facade</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AccountManagement.Persistence\AccountManagement.Persistence.csproj">
       <Project>{752C2A5E-D72D-482A-9B0E-4C72923FE926}</Project>
       <Name>AccountManagement.Persistence</Name>

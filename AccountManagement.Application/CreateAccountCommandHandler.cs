@@ -23,7 +23,7 @@ namespace AccountManagement.Application
 
         public void Handle(CreateAccountCommand command)
         {
-            var accountOwner = _accountOwnerService.GetAccountOwner(command.CustomerNationalCode);
+            var accountOwner = _accountOwnerService.GetAccountOwner(command.OwnerId);
             var account = new AccountAggregate(accountOwner);
             _accountAggregateRepository.Save(account);
         }

@@ -9,7 +9,7 @@ namespace AccountManagement.Application.Contract
 {
     public class CreateAccountCommand : ICommand
     {
-        public string CustomerNationalCode { get; set; }
+        public Guid OwnerId { get; set; }
 
     }
 }

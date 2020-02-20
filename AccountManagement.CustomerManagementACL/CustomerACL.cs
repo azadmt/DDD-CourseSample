@@ -16,9 +16,9 @@ namespace AccountManagement.CustomerManagementACL
             _customerAggregateRepository = customerAggregateRepository;
         }
 
-        public AccountOwner GetAccountOwner(string nationalCode)
+        public AccountOwner GetAccountOwner(Guid ownerId)
         {
-            var customer = _customerAggregateRepository.FindBy(nationalCode);
+            var customer = _customerAggregateRepository.Get(ownerId);
             return new AccountOwner(customer.Id, customer.NationalCode.Code);
         }
     }

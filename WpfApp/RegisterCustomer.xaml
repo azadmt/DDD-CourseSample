@@ -30,7 +30,7 @@
         <Label x:Name="label_Copy9" Content="NationalCode :" HorizontalAlignment="Left" Margin="530,61,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="3.439,0.538"/>
         <TextBox x:Name="txtNationalCode" HorizontalAlignment="Left" Height="23" Margin="626,64,0,0" TextWrapping="Wrap" Text="0084002637" VerticalAlignment="Top" Width="156"/>
         <Label x:Name="label_Copy10" Content="Register Customer" HorizontalAlignment="Left" Margin="306,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Width="127" FontFamily="Segoe UI Emoji" Background="#FF86FF6B"/>
-        <Button x:Name="btnCreateAccount"  Content="CreateAccount" Visibility="Visible" HorizontalAlignment="Left" Margin="400,358,0,0" VerticalAlignment="Top" Width="149" Height="41" Background="#FFFF9191" Click="btnCreateAccount_Click" />
+        <!--<Button x:Name="btnCreateAccount"  Content="CreateAccount" Visibility="Visible" HorizontalAlignment="Left" Margin="400,358,0,0" VerticalAlignment="Top" Width="149" Height="41" Background="#FFFF9191" Click="btnCreateAccount_Click" />-->
         <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="637,361,0,0" VerticalAlignment="Top" Width="106" RenderTransformOrigin="0.5,0.5" Height="33" Click="btnLogin_Click">
             <Button.RenderTransform>
                 <TransformGroup>

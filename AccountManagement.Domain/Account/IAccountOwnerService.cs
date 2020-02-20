@@ -8,6 +8,6 @@ namespace AccountManagement.Domain.Account
 {
    public interface IAccountOwnerService
     {
-        AccountOwner GetAccountOwner(string nationalCode);
+        AccountOwner GetAccountOwner(Guid ownerId);
     }
 }

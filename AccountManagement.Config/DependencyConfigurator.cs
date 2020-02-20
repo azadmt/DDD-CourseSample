@@ -3,6 +3,9 @@ using AccountManagement.Application.Contract;
 using AccountManagement.Controller.Controllers;
 using AccountManagement.CustomerManagementACL;
 using AccountManagement.Domain.Account;
+using AccountManagement.Facade;
+using AccountManagement.Facade.Contract;
+using AccountManagement.Facade.Contract.EventHandler;
 using AccountManagement.Persistence;
 using AccountManagement.Persistence.Mapping;
 using Castle.MicroKernel.Registration;
@@ -37,6 +40,8 @@ namespace AccountManagement.Config
             RegisterRepositories(windsorContainer);
             RegisterControllers(windsorContainer);
             RegisterDomainServices(windsorContainer);
+            RegisterFacadeServices(windsorContainer);
+         //   RegisterEventHandlers(windsorContainer);
             // RegisterMongoDependencies(windsorContainer);
             RegisterNHDependencies(windsorContainer);
         }
@@ -50,6 +55,23 @@ namespace AccountManagement.Config
                 //.Interceptors<LoggingInterceptor>()
                 .LifestylePerWebRequest());
 
+        }
+
+
+        private static void RegisterEventHandlers(IWindsorContainer windsorContainer)
+        {
+            windsorContainer.Register(
+             Classes.FromAssemblyContaining<CustomerCreatedEventHandler>()
+                 .BasedOn(typeof(IEventHandler<>))
+                 .WithServiceAllInterfaces()
+                 .LifestyleTransient());
+        }
+
+        private static void RegisterFacadeServices(IWindsorContainer windsorContainer)
+        {
+            windsorContainer.Register(Component.For<IAccountService>()
+                .ImplementedBy<AccountService>()
+                .LifestylePerWebRequest());
         }
 
         private static void RegisterDomainServices(IWindsorContainer windsorContainer)

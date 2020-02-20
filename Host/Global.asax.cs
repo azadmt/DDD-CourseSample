@@ -43,7 +43,7 @@ namespace Host
 
         private void Authenticate(string token)
         {
-            var client = new RestClient("http://localhost:51551/api");
+            var client = new RestClient("http://localhost:5000/api");
             var request = new RestSharp.RestRequest("/Security/", RestSharp.Method.GET)
                 .AddQueryParameter("token", token);
             try

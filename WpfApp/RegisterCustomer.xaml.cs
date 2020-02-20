@@ -54,7 +54,7 @@ namespace WpfApp
 
 
             CallRestApi(registerCustomer, "/customer/");
-            btnCreateAccount.Visibility = Visibility.Visible;
+            //btnCreateAccount.Visibility = Visibility.Visible;
         }
 
 
@@ -86,7 +86,7 @@ namespace WpfApp
 
         private void Login()
         {
-            var client = new RestClient("http://localhost:51551/api");
+            var client = new RestClient("http://localhost:5000/api");
             var request = new RestSharp.RestRequest("/Security/", RestSharp.Method.POST)
             { RequestFormat = RestSharp.DataFormat.Json }
                 .AddJsonBody(new { UserName = "admin", Password = "123" });
@@ -107,13 +107,13 @@ namespace WpfApp
 
         private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
         {
-            if (!isLoggin)
-            {
-                MessageBox.Show("Please  Login To System !!!");
-                return;
-            }
-            var command = new CreateAccountCommand() { CustomerNationalCode = txtNationalCode.Text };
-            CallRestApi(command, "/Account/");
+            //if (!isLoggin)
+            //{
+            //    MessageBox.Show("Please  Login To System !!!");
+            //    return;
+            //}
+            //var command = new CreateAccountCommand() { OwnerId = txtNationalCode.Text };
+            //CallRestApi(command, "/Account/");
 
         }
 

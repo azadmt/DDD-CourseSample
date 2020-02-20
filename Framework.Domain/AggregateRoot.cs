@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Framework.Core;
 
 namespace Framework.Domain
 {
@@ -32,4 +33,5 @@ namespace Framework.Domain
             return Id.GetHashCode();
         }
     }
+
 }

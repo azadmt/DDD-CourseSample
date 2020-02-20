@@ -10,11 +10,11 @@ namespace Framework.Application
     public class CommandBus : ICommandBus
     {
         private ICommandHandlerFactory _factory;
-       // private IUnitOfWork uow;
-        public CommandBus(ICommandHandlerFactory factory/*, IUnitOfWork uow*/)
+        private IEventBus _eventBus;
+        public CommandBus(ICommandHandlerFactory factory, IEventBus eventBus)
         {
             this._factory = factory;
-           // this.uow = uow;
+            this._eventBus = eventBus;
         }
 
         public void Dispatch<T>(T command) where T : ICommand
@@ -22,23 +22,21 @@ namespace Framework.Application
             var handler = _factory.CreateHandler<T>();
             try
             {
-
-              //  uow.Begin();//????
-              
-                handler.Uow.Begin();
-               // var transactionalHandler = new TransactionalCommandHandlerDecorator<T>(handler, uow);
+              //  handler.Uow.Begin();
+                handler = new TransactionalCommandHandlerDecorator<T>(handler, _eventBus);// Decorate command handler
                 handler.Handle(command);
-                handler.Uow.Commit();
-                //  uow.Commit();
-
+             //   handler.Uow.Commit();
+                //if (System.Transactions.Transaction.Current == null)
+                //{
+                //    _eventBus.Publish(new TransactionCommitedEvent());
+                //}            
             }
             catch (Exception ex)
             {
-
                 handler.Uow.Rollback();
                 throw ex;
             }
-           //TODO: release command handler
+
         }
     }
 }

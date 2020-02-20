@@ -13,6 +13,8 @@ using System.Data.Common;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using MassTransit;
+using Framework.ServiceBus.MassTransit;
 
 namespace Framework.Config
 {
@@ -32,6 +34,20 @@ namespace Framework.Config
                 return new Container(windsorContainer);
             }));
 
+
+            windsorContainer.Register(Component.For<IBusControl>().UsingFactoryMethod<IBusControl>(p =>
+            {
+                return Bus.Factory.CreateUsingRabbitMq(sbc =>
+                {
+                    sbc.Host("rabbitmq://localhost");// read from config
+
+                });
+            }));
+
+            windsorContainer.Register(Component.For<IEnterpriseServiceBus>().ImplementedBy<MassTransitServiceBus>());
+
+
+
             windsorContainer.Register(Component.For<ICommandHandlerFactory>().ImplementedBy<CastleCommandHandlerFactory>()
                 .UsingFactoryMethod<CastleCommandHandlerFactory>(p =>
                   {
@@ -50,6 +66,9 @@ namespace Framework.Config
             {
                 a.Close();
             }).Forward<DbConnection>());
+
+       
         }
+
     }
 }

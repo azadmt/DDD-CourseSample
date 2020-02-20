@@ -8,9 +8,17 @@ namespace Framework.Core
 {
     public class EventAggregator : IEventBus
     {
-        public EventAggregator()
-        {          
+        Queue<IExternalMessage> externalMessages = new Queue<IExternalMessage>();
+        IEnterpriseServiceBus enterpriseServiceBus;
+
+        public EventAggregator(IEnterpriseServiceBus enterpriseServiceBus)
+        {
             Subscribers = new List<object>();
+            this.enterpriseServiceBus = enterpriseServiceBus;
+            
+            Subscribe(new ActionHandler<TransactionCommitedEvent>(a => {
+                PublishExternalMessages();
+            }));
         }
 
         private IList<object> Subscribers { get; }
@@ -28,31 +36,32 @@ namespace Framework.Core
             eligibleSubscribers.ForEach(s =>
             {
                 s.Handle(eventToPublish);
-            });      
+            });
+
+            if (eventToPublish is IExternalMessage)
+            {
+                externalMessages.Enqueue((IExternalMessage)eventToPublish);
+            }
         }
 
+        private void PublishExternalMessages()
+        {
+            while (externalMessages.Any())
+            {
+                //TODO : Handle Exception 
+                var message = externalMessages.Dequeue();
+                enterpriseServiceBus.Publish(message);
+            }
+        }
 
         private List<IEventHandler<TEvent>> GetEligibleSubscribers<TEvent>() where TEvent : IEvent
         {
-            return Subscribers.Where(e => e is IEventHandler<TEvent> != null).OfType<IEventHandler<TEvent>>().ToList();
-        }
-
-    }
-
-
-    public class ActionHandler<TEvent> : IEventHandler<TEvent> where TEvent : IEvent
-    {
-        private readonly Action<TEvent> handler;
-
-        public ActionHandler(Action<TEvent> handlerDelegate)
-        {
-            handler = handlerDelegate;
-        }
-
-        public void Handle(TEvent eventToHandle)
-        {
-            handler(eventToHandle);
+            var eligibleSubscribers = new List<IEventHandler<TEvent>>();
+            var handlers = ServiceLocator.Current.ResolveAll<IEventHandler<TEvent>>().ToList();
+            var inlineHandlers = Subscribers.Where(e => e is IEventHandler<TEvent> != null).OfType<IEventHandler<TEvent>>().ToList();
+            eligibleSubscribers.AddRange(handlers);
+            eligibleSubscribers.AddRange(inlineHandlers);
+            return eligibleSubscribers;
         }
     }
-
 }

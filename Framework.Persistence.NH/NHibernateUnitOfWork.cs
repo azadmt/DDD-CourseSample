@@ -15,6 +15,7 @@ namespace Framework.Persistence.NH
         public NHibernateUnitOfWork(ISession session)
         {
             this.session = session;
+
         }
         public void Begin()
         {
@@ -23,7 +24,7 @@ namespace Framework.Persistence.NH
 
         public void Commit()
         {
-            session.Transaction.Commit();
+            session.Transaction.Commit();         
         }
 
         public void Rollback()

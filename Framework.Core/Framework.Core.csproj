@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionHandler.cs" />
     <Compile Include="EventAggregator.cs" />
     <Compile Include="IContainer.cs" />
     <Compile Include="IEvent.cs" />
@@ -54,11 +55,13 @@
     <Compile Include="ILogger.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IRequestContext.cs" />
+    <Compile Include="IEnterPriseServiceBus.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="JsonSerilizer.cs" />
     <Compile Include="LogData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocator.cs" />
+    <Compile Include="TransactionCommited.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

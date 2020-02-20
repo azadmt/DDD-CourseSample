@@ -71,6 +71,10 @@
       <Project>{DB8F891C-E3C8-4DA8-A04D-C6828042260F}</Project>
       <Name>Framework.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework.Domain\Framework.Domain.csproj">
+      <Project>{1C8C0CAF-8527-4895-A722-19106256D2CD}</Project>
+      <Name>Framework.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

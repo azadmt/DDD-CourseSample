@@ -1,4 +1,5 @@
-﻿using CustomerManagement.Application.Contract;
+﻿using AccountManagement.Application.Contract;
+using CustomerManagement.Application.Contract;
 using CustomerManagement.Domain.Contract;
 using CustomerManagement.Facad.Contract;
 using Framework.Application;
@@ -26,8 +27,19 @@ namespace CustomerManagement.Facad
         public Guid RegisterCustomer(RegisterCustomerCommand registerCustomerCommand)
         {
             Guid customerId = Guid.Empty;
-            eventBus.Subscribe(new ActionHandler<CustomerCreatedEvent>(p => customerId = p.Id));
-            commandbus.Dispatch(registerCustomerCommand);
+            eventBus.Subscribe(new ActionHandler<CustomerCreatedEvent>(p =>
+            customerId = p.CustomerId
+            ));
+
+            var opt = new TransactionOptions();
+            opt.IsolationLevel = IsolationLevel.ReadCommitted;
+            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, opt))//AOP =>use PostSharp Or Castle Interceptor
+            {
+                commandbus.Dispatch(registerCustomerCommand);
+                commandbus.Dispatch(new CreateAccountCommand() { OwnerId = customerId });
+                scope.Complete();
+                eventBus.Publish(new TransactionCommitedEvent());
+            }
             return customerId;
         }
 

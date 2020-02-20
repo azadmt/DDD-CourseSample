@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CustomerManagement.Customer
 {
-    public class CustomerAggregate : Entity, IAggregateRoot
+    public class CustomerAggregate :Entity, IAggregateRoot
     {
         string firstName;
         string lastName;
@@ -30,7 +30,11 @@ namespace CustomerManagement.Customer
             HomeAddress = homeAddress;
             WorkAddress = workAddress;
             NationalCode = new NationalCode(nationalCode);
-            EventBus.Publish(new CustomerCreatedEvent(Id));
+
+            EventBus.Publish(new CustomerCreatedEvent(
+                Id, FirstName, LastName,
+                HomeAddress.PostalCode, HomeAddress.City, HomeAddress.Province, 
+                WorkAddress.PostalCode, WorkAddress.City, WorkAddress.Province));
         }
 
         protected CustomerAggregate()

@@ -55,6 +55,10 @@
       <Project>{612C3D27-6E93-4D1D-AF55-7694FD6DAF44}</Project>
       <Name>CustomerManagement.Application.Contract</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CustomerManagement.Domain.Contract\CustomerManagement.Domain.Contract.csproj">
+      <Project>{2090803D-558B-429A-80D4-DC7541CB8B08}</Project>
+      <Name>CustomerManagement.Domain.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CustomerManagement\CustomerManagement.Domain.csproj">
       <Project>{8181EE59-9D7A-4135-96DA-663225F451D2}</Project>
       <Name>CustomerManagement.Domain</Name>
@@ -66,6 +70,10 @@
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{DB8F891C-E3C8-4DA8-A04D-C6828042260F}</Project>
       <Name>Framework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Domain\Framework.Domain.csproj">
+      <Project>{1C8C0CAF-8527-4895-A722-19106256D2CD}</Project>
+      <Name>Framework.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Security\Framework.Security.csproj">
       <Project>{FF94A058-FFD7-4F65-AF64-B26103EEC2B4}</Project>

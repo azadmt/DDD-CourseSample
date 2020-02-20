@@ -19,7 +19,6 @@ namespace Framework.Application
     public interface ICommandHandler<T> : ICommandHandler where T : ICommand
     {
         IUnitOfWork Uow { get; }
-        [MyAttribiute]
         void Handle(T command);
     }
 

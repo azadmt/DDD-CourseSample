@@ -10,5 +10,6 @@ namespace Framework.Domain
     public interface IAggregateRoot
     {
         IEventBus EventBus { get;  }
+
     }
 }
